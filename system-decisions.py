@@ -59,3 +59,24 @@ def simulate():
     print("Contract ID:", c.uid)
     print("Signature:", sig)
     print("Valid:", c.verify("secret_key_abc"))
+
+    return c
+
+def audit(contract):
+    print("\nMessages:")
+    for m in contract.messages:
+        print(m)
+
+def save(contract):
+    file_data = export_file(contract)
+    print("\nExported File:")
+    print(json.dumps(file_data, indent=2))
+
+def main():
+    contract = simulate()
+    audit(contract)
+    save(contract)
+    print("Finished")
+
+if __name__ == "__main__":
+    main()
